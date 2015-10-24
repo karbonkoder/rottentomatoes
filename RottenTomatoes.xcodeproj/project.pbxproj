@@ -9,10 +9,11 @@
 /* Begin PBXBuildFile section */
 		F66DA9EC1BD6F2880033C027 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = F66DA9EB1BD6F2880033C027 /* main.m */; };
 		F66DA9EF1BD6F2880033C027 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = F66DA9EE1BD6F2880033C027 /* AppDelegate.m */; };
-		F66DA9F21BD6F2880033C027 /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66DA9F11BD6F2880033C027 /* ViewController.m */; };
+		F66DA9F21BD6F2880033C027 /* MoviesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = F66DA9F11BD6F2880033C027 /* MoviesViewController.m */; };
 		F66DA9F51BD6F2880033C027 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F66DA9F31BD6F2880033C027 /* Main.storyboard */; };
 		F66DA9F71BD6F2880033C027 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F66DA9F61BD6F2880033C027 /* Assets.xcassets */; };
 		F66DA9FA1BD6F2880033C027 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F66DA9F81BD6F2880033C027 /* LaunchScreen.storyboard */; };
+		F66DAA031BD6F8E60033C027 /* MoviesTableViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = F66DAA021BD6F8E60033C027 /* MoviesTableViewCell.m */; settings = {ASSET_TAGS = (); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -20,12 +21,14 @@
 		F66DA9EB1BD6F2880033C027 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		F66DA9ED1BD6F2880033C027 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
 		F66DA9EE1BD6F2880033C027 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
-		F66DA9F01BD6F2880033C027 /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		F66DA9F11BD6F2880033C027 /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		F66DA9F01BD6F2880033C027 /* MoviesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MoviesViewController.h; sourceTree = "<group>"; };
+		F66DA9F11BD6F2880033C027 /* MoviesViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = MoviesViewController.m; sourceTree = "<group>"; };
 		F66DA9F41BD6F2880033C027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		F66DA9F61BD6F2880033C027 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F66DA9F91BD6F2880033C027 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F66DA9FB1BD6F2880033C027 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F66DAA011BD6F8E60033C027 /* MoviesTableViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MoviesTableViewCell.h; sourceTree = "<group>"; };
+		F66DAA021BD6F8E60033C027 /* MoviesTableViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MoviesTableViewCell.m; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,9 +63,11 @@
 			children = (
 				F66DA9ED1BD6F2880033C027 /* AppDelegate.h */,
 				F66DA9EE1BD6F2880033C027 /* AppDelegate.m */,
-				F66DA9F01BD6F2880033C027 /* ViewController.h */,
-				F66DA9F11BD6F2880033C027 /* ViewController.m */,
+				F66DA9F01BD6F2880033C027 /* MoviesViewController.h */,
+				F66DA9F11BD6F2880033C027 /* MoviesViewController.m */,
 				F66DA9F31BD6F2880033C027 /* Main.storyboard */,
+				F66DAA011BD6F8E60033C027 /* MoviesTableViewCell.h */,
+				F66DAA021BD6F8E60033C027 /* MoviesTableViewCell.m */,
 				F66DA9F61BD6F2880033C027 /* Assets.xcassets */,
 				F66DA9F81BD6F2880033C027 /* LaunchScreen.storyboard */,
 				F66DA9FB1BD6F2880033C027 /* Info.plist */,
@@ -150,8 +155,9 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F66DA9F21BD6F2880033C027 /* ViewController.m in Sources */,
+				F66DA9F21BD6F2880033C027 /* MoviesViewController.m in Sources */,
 				F66DA9EF1BD6F2880033C027 /* AppDelegate.m in Sources */,
+				F66DAA031BD6F8E60033C027 /* MoviesTableViewCell.m in Sources */,
 				F66DA9EC1BD6F2880033C027 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
