@@ -8,6 +8,7 @@
 
 #import "MoviesViewController.h"
 #import "MoviesTableViewCell.h"
+#import <UIImageView+AFNetworking.h>
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -32,14 +33,17 @@
     // Some dirty cell. etc. Dirty, clean. Perf optimization.
     cell.labelOne.text = self.movies[indexPath.row][@"title"];
     cell.labelTwo.text = self.movies[indexPath.row][@"synopsis"];
-    // NSURL *url = [NSURL URLWithString:self.movies[indexPath.row][@"posters"][@"thumbnails"]];
-    
+    NSString *urlString = self.movies[indexPath.row][@"posters"][@"thumbnail"];
+    // NSLog(@"%@", urlString);
+    NSURL *thumbnailUrl = [NSURL URLWithString:urlString];
+    [cell.image setImageWithURL:thumbnailUrl];
+
     // UITableViewCell *cell = [[UITableViewCell alloc]init];
     
 //    NSString *cellText = [NSString stringWithFormat:@"Section: %ld, Row: %ld", indexPath.section, indexPath.row];
 //    
 //    NSLog(@"%@", cellText);
-        
+    
 //    cell.textLabel.text = cellText;
     return cell;
 }
