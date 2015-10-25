@@ -32,7 +32,7 @@
     // Some dirty cell. etc. Dirty, clean. Perf optimization.
     cell.labelOne.text = self.movies[indexPath.row][@"title"];
     cell.labelTwo.text = self.movies[indexPath.row][@"synopsis"];
-    NSURL *url = [NSURL URLWithString:self.movies[indexPath.row][@"posters"][@"thumbnails"]];
+    // NSURL *url = [NSURL URLWithString:self.movies[indexPath.row][@"posters"][@"thumbnails"]];
     
     // UITableViewCell *cell = [[UITableViewCell alloc]init];
     
@@ -55,7 +55,7 @@
 }
 
 - (void) fetchMovies {
-    NSString *clientId = @"Put_Your_Client_Id_Here";
+    NSString *clientId = @"";
     NSString *urlString =
     [@"https://gist.githubusercontent.com/timothy1ee/d1778ca5b944ed974db0/raw/489d812c7ceeec0ac15ab77bf7c47849f2d1eb2b/gistfile1.json" stringByAppendingString:clientId];
     
@@ -77,7 +77,8 @@
                                                     [NSJSONSerialization JSONObjectWithData:data
                                                                                     options:kNilOptions
                                                                                       error:&jsonError];
-                                                    NSLog(@"Response: %@", responseDictionary);
+                                                    // NSLog(@"Response: %@", responseDictionary);
+                                                    NSLog(@"got network call response");
                                                     self.movies = responseDictionary[@"movies"];
                                                     [self.tableView reloadData];
                                                 } else {
