@@ -9,6 +9,7 @@
 #import "MoviesViewController.h"
 #import "MoviesTableViewCell.h"
 #import <UIImageView+AFNetworking.h>
+#import "MovieDetailsViewController.h"
 
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
@@ -95,6 +96,14 @@
 - (void)didReceiveMemoryWarning {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
+    MovieDetailsViewController* movieDetailsViewController = [segue destinationViewController];
+    NSIndexPath *indexPath = [self.tableView indexPathForCell:sender];
+    NSLog(@"Selected %ld", (long)indexPath.row);
+    movieDetailsViewController.movie = self.movies[indexPath.row];
+    // TODO remove grey selection effect.
 }
 
 @end
