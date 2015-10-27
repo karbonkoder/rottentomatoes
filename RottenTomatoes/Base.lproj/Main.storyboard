@@ -42,9 +42,17 @@
                                                     <color key="textColor" red="0.0" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Network Error" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" id="G4u-Wq-MLO">
+                                                    <rect key="frame" x="8" y="8" width="279" height="21"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                    <color key="textColor" red="1" green="0.0" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
                                             </subviews>
                                         </tableViewCellContentView>
                                         <connections>
+                                            <outlet property="errorLabel" destination="G4u-Wq-MLO" id="HHG-0D-pq8"/>
                                             <outlet property="image" destination="cwg-XN-a9i" id="eca-4P-my3"/>
                                             <outlet property="labelOne" destination="0hq-FH-yPp" id="qSW-6A-ih9"/>
                                             <outlet property="labelTwo" destination="CYS-92-8sa" id="yj8-vu-PPC"/>

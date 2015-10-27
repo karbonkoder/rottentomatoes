@@ -15,13 +15,19 @@
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
+@property BOOL errorFlag;
 
 @end
 
 @implementation MoviesViewController
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return self.movies.count;
+    if (self.errorFlag) {
+        return 1;
+    }
+    else {
+        return self.movies.count;
+    }
 }
 
 // Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
@@ -31,6 +37,19 @@
     // BE performant in this cell.
     MoviesTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];//[[MoviesTableViewCell alloc]init];
     
+    if (self.errorFlag) {
+        [cell.errorLabel setHidden:NO];
+        [cell.labelOne setHidden:YES];
+        [cell.labelTwo setHidden:YES];
+        [cell.imageView setHidden:YES];
+        return cell;
+    } else {
+        [cell.errorLabel setHidden:YES];
+        [cell.labelOne setHidden:NO];
+        [cell.labelTwo setHidden:NO];
+        [cell.imageView setHidden:NO];
+    }
+
     // dequeueReusableCellWithIdentifier
     // Some dirty cell. etc. Dirty, clean. Perf optimization.
     cell.labelOne.text = self.movies[indexPath.row][@"title"];
@@ -96,10 +115,14 @@
                                                     // Below sleep code line is not really needed, but for demo to show spinner.
                                                     [NSThread sleepForTimeInterval:2.0f];
 
+                                                    self.errorFlag = NO;
                                                     [self.tableView reloadData];
                                                     [self.spinner stopAnimating];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
+                                                    self.errorFlag = YES;
+                                                    [self.tableView reloadData];
+                                                    [self.spinner stopAnimating];
                                                 }
                                             }];
     [task resume];
