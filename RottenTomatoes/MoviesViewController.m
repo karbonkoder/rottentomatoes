@@ -14,6 +14,7 @@
 @interface MoviesViewController () <UITableViewDataSource, UITableViewDelegate>
 @property (weak, nonatomic) IBOutlet UITableView *tableView;
 @property (strong, nonatomic) NSArray *movies;
+@property (strong, nonatomic) UIActivityIndicatorView *spinner;
 
 @end
 
@@ -56,6 +57,13 @@
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
     
+    // http://stackoverflow.com/a/8990410/566878
+    self.spinner = [[UIActivityIndicatorView alloc] initWithActivityIndicatorStyle:UIActivityIndicatorViewStyleGray];
+    self.spinner.center = CGPointMake(160, 240);
+    self.spinner.tag = 12;
+    [self.view addSubview:self.spinner];
+    [self.spinner startAnimating];
+
     [self fetchMovies];
 }
 
@@ -85,7 +93,11 @@
                                                     // NSLog(@"Response: %@", responseDictionary);
                                                     NSLog(@"got network call response");
                                                     self.movies = responseDictionary[@"movies"];
+                                                    // Below sleep code line is not really needed, but for demo to show spinner.
+                                                    [NSThread sleepForTimeInterval:2.0f];
+
                                                     [self.tableView reloadData];
+                                                    [self.spinner stopAnimating];
                                                 } else {
                                                     NSLog(@"An error occurred: %@", error.description);
                                                 }
