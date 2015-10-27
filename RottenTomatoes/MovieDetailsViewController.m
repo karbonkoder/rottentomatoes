@@ -13,6 +13,7 @@
 @property (weak, nonatomic) IBOutlet UIImageView *imageDetailView;
 @property (weak, nonatomic) IBOutlet UILabel *titleTextView;
 @property (weak, nonatomic) IBOutlet UILabel *detailTextView;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -26,6 +27,10 @@
     NSString *urlString = movie[@"posters"][@"thumbnail"];
     NSURL *thumbnailUrl = [NSURL URLWithString:urlString];
     [self.imageDetailView setImageWithURL:thumbnailUrl];
+    [self.detailTextView sizeToFit];
+
+    CGFloat height = self.imageDetailView.bounds.size.height + self.titleTextView.bounds.size.height + self.detailTextView.bounds.size.height + 10; // buffer
+    self.scrollView.contentSize = CGSizeMake(self.detailTextView.bounds.size.width, height);
 }
 
 @end
