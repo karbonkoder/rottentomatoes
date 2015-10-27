@@ -16,6 +16,7 @@
 @property (strong, nonatomic) NSArray *movies;
 @property (strong, nonatomic) UIActivityIndicatorView *spinner;
 @property BOOL errorFlag;
+@property (strong, nonatomic) UIRefreshControl *refreshControl;
 
 @end
 
@@ -30,12 +31,8 @@
     }
 }
 
-// Row display. Implementers should *always* try to reuse cells by setting each cell's reuseIdentifier and querying for available reusable cells with dequeueReusableCellWithIdentifier:
-// Cell gets various attributes set automatically based on table (separators) and data source (accessory views, editing controls)
-
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
-    // BE performant in this cell.
-    MoviesTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];//[[MoviesTableViewCell alloc]init];
+    MoviesTableViewCell *cell = [self.tableView dequeueReusableCellWithIdentifier:@"movieCell"];
     
     if (self.errorFlag) {
         [cell.errorLabel setHidden:NO];
@@ -50,28 +47,22 @@
         [cell.imageView setHidden:NO];
     }
 
-    // dequeueReusableCellWithIdentifier
-    // Some dirty cell. etc. Dirty, clean. Perf optimization.
     cell.labelOne.text = self.movies[indexPath.row][@"title"];
     cell.labelTwo.text = self.movies[indexPath.row][@"synopsis"];
     NSString *urlString = self.movies[indexPath.row][@"posters"][@"thumbnail"];
-    // NSLog(@"%@", urlString);
     NSURL *thumbnailUrl = [NSURL URLWithString:urlString];
     [cell.image setImageWithURL:thumbnailUrl];
 
-    // UITableViewCell *cell = [[UITableViewCell alloc]init];
-    
-//    NSString *cellText = [NSString stringWithFormat:@"Section: %ld, Row: %ld", indexPath.section, indexPath.row];
-//    
-//    NSLog(@"%@", cellText);
-    
-//    cell.textLabel.text = cellText;
     return cell;
 }
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
+    
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(onRefresh) forControlEvents:UIControlEventValueChanged];
+    
+    [self.tableView insertSubview:self.refreshControl atIndex:0];
     
     self.tableView.dataSource = self;
     self.tableView.delegate = self;
@@ -84,6 +75,13 @@
     [self.spinner startAnimating];
 
     [self fetchMovies];
+}
+
+-(void) onRefresh {
+    [self fetchMovies];
+    // To simulate slow network
+    [NSThread sleepForTimeInterval:2.0f];
+    [self.refreshControl endRefreshing];
 }
 
 - (void) fetchMovies {
